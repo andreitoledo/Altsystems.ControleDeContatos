@@ -13,5 +13,20 @@ namespace Altsystems.ControleDeContatos.Controllers
             return View();
         }
 
+        public IActionResult Incluir()
+        {
+            return View();
+        }
+
+        public IActionResult Editar()
+        {
+            return View();
+        }
+
+        public IActionResult Excluir()
+        {
+            return View();
+        }
+
     }
 }
