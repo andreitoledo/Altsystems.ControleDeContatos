@@ -1,24 +1,30 @@
-﻿@{
+﻿@model Contato
+@{
     ViewData["Title"] = "Cadastrar Contatos";
 }
 
+<div class="text-center">
 
     <h1 class="display-4">Cadastrar Contato</h1>
 
-    <form>
+</div>
+    
+
+    <form asp-controller="Contato" asp-action="Incluir" method="post">
+
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" placeholder="Digite o nome do contado">            
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do contado">            
         </div>
 
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" class="form-control" placeholder="Digite o email do contado">            
+            <input type="email" asp-for="Email" class="form-control" placeholder="Digite o email do contado">            
         </div>
 
         <div class="form-group">
             <label for="celular">Celular</label>
-            <input type="text" class="form-control" placeholder="Digite o celular do contato">            
+            <input type="text" asp-for="Celular" class="form-control" placeholder="Digite o celular do contato">            
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>

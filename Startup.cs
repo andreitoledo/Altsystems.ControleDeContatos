@@ -1,17 +1,12 @@
 using Altsystems.ControleDeContatos.Data;
+using Altsystems.ControleDeContatos.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altsystems.ControleDeContatos
 {
@@ -36,11 +31,13 @@ namespace Altsystems.ControleDeContatos
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
-            // BancoContent
+            // configura a injeção de dependencia do contexto BancoContent
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            // configura a injeção de dependencia da interface IContatoRepository
+            services.AddScoped<IContatoRepository, ContatoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

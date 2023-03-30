@@ -1,22 +1,38 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Altsystems.ControleDeContatos.Models;
+using Altsystems.ControleDeContatos.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Altsystems.ControleDeContatos.Controllers
 {
     public class ContatoController : Controller
     {
+
+        private readonly IContatoRepository _contatoRepository;
+
+        public ContatoController(IContatoRepository contatoRepository)
+        {
+            _contatoRepository = contatoRepository;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
+        // chama a view para incluir / inclui no banco o contato
         public IActionResult Incluir()
         {
             return View();
+        }        
+
+        [HttpPost]
+        public IActionResult Incluir(Contato contato)
+        {
+            _contatoRepository.Adicionar(contato);
+            return RedirectToAction("Index");            
         }
+
+
 
         public IActionResult Editar()
         {
