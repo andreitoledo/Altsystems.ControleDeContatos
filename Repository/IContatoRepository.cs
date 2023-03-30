@@ -9,5 +9,6 @@ namespace Altsystems.ControleDeContatos.Repository
         List<Contato> BuscarTodos();
         Contato Adicionar(Contato contato);
         Contato Atualizar(Contato contato);
+        bool Excluir(int id);
     }
 }

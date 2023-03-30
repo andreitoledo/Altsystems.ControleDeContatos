@@ -48,5 +48,17 @@ namespace Altsystems.ControleDeContatos.Repository
             return contatoDB;
 
         }
+
+        public bool Excluir(int id)
+        {
+            Contato contatoDB = ListarPorId(id);
+
+            if (contatoDB == null) throw new System.Exception("Houve um erro na exclusão do contato.!");
+
+            _context.Contato.Remove(contatoDB);
+            _context.SaveChanges();
+
+            return true;
+        }
     }
 }

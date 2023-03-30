@@ -55,9 +55,19 @@ namespace Altsystems.ControleDeContatos.Controllers
 
  // ********************EXCLUIR******************************************** //
 
-        public IActionResult ExcluirConfirmacao()
+        public IActionResult ExcluirConfirmacao(int id)
         {
-            return View();
+            Contato contato = _contatoRepository.ListarPorId(id);
+
+            return View(contato);
+        }
+
+        public IActionResult Excluir(int id)
+        {
+            _contatoRepository.Excluir(id);
+
+            return RedirectToAction("Index");
+
         }
 
     }
