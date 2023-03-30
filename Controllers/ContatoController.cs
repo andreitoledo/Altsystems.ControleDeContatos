@@ -1,6 +1,7 @@
 ﻿using Altsystems.ControleDeContatos.Models;
 using Altsystems.ControleDeContatos.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Altsystems.ControleDeContatos.Controllers
 {
@@ -16,7 +17,9 @@ namespace Altsystems.ControleDeContatos.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Contato> contatos =  _contatoRepository.BuscarTodos();
+
+            return View(contatos);
         }
 
         // chama a view para incluir / inclui no banco o contato
