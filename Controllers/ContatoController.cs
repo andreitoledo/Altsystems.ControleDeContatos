@@ -21,26 +21,39 @@ namespace Altsystems.ControleDeContatos.Controllers
 
             return View(contatos);
         }
-
-        // chama a view para incluir / inclui no banco o contato
+ // **********************INCLUIR***************************************** //
+        
         public IActionResult Incluir()
         {
             return View();
-        }        
-
+        }
+        
         [HttpPost]
         public IActionResult Incluir(Contato contato)
         {
             _contatoRepository.Adicionar(contato);
+
             return RedirectToAction("Index");            
         }
 
-
-
-        public IActionResult Editar()
+// **********************EDITAR******************************************* //
+        
+        public IActionResult Editar(int id)
         {
-            return View();
+            Contato contato = _contatoRepository.ListarPorId(id);
+
+            return View(contato);
         }
+
+        [HttpPost]
+        public IActionResult Alterar(Contato contato)
+        {
+            _contatoRepository.Atualizar(contato);
+
+            return RedirectToAction("Index");
+        }
+
+ // ********************EXCLUIR******************************************** //
 
         public IActionResult ExcluirConfirmacao()
         {
