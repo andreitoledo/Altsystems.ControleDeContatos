@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Altsystems.ControleDeContatos.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,7 @@ namespace Altsystems.ControleDeContatos.Data
             : base(options)
         {
         }
+
+        public DbSet<Contato> Contato { get; set; }
     }
 }
