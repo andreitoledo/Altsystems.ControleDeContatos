@@ -1,16 +1,16 @@
 ﻿using Altsystems.ControleDeContatos.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Altsystems.ControleDeContatos.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class BancoContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public BancoContext(DbContextOptions<BancoContext> options)
             : base(options)
         {
         }
 
         public DbSet<Contato> Contato { get; set; }
+
     }
 }
