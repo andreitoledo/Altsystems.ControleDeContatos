@@ -31,13 +31,23 @@ namespace Altsystems.ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Incluir(Contato contato)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contatoRepository.Adicionar(contato);
+                if (ModelState.IsValid)
+                {
+                    _contatoRepository.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso.";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contato);
+            }
+            catch (System.Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não foi possível cadastrar seu contato, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contato);
             
         }
 
