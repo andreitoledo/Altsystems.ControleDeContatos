@@ -53,9 +53,13 @@ namespace Altsystems.ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Alterar(Contato contato)
         {
-            _contatoRepository.Atualizar(contato);
+            if (ModelState.IsValid)
+            {
+                _contatoRepository.Atualizar(contato);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");
+            return View("Editar", contato);
         }
 
  // ********************EXCLUIR******************************************** //
