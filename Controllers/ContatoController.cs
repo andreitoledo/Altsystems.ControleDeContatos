@@ -36,7 +36,7 @@ namespace Altsystems.ControleDeContatos.Controllers
                 if (ModelState.IsValid)
                 {
                     _contatoRepository.Adicionar(contato);
-                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso.";
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
                     return RedirectToAction("Index");
                 }
 
@@ -68,7 +68,7 @@ namespace Altsystems.ControleDeContatos.Controllers
                 if (ModelState.IsValid)
                 {
                     _contatoRepository.Atualizar(contato);
-                    TempData["MensagemSucesso"] = "Contato alterado com sucesso.";
+                    TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
                     return RedirectToAction("Index");
                 }
 
@@ -93,9 +93,27 @@ namespace Altsystems.ControleDeContatos.Controllers
 
         public IActionResult Excluir(int id)
         {
-            _contatoRepository.Excluir(id);
+            try
+            {
+                bool apagado = _contatoRepository.Excluir(id);
 
-            return RedirectToAction("Index");
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Contato deletado com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = $"Ops, não foi possível deletar seu contato!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não foi possível deletar seu contato, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
 
         }
 
