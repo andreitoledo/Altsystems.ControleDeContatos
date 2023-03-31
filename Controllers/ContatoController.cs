@@ -31,9 +31,14 @@ namespace Altsystems.ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Incluir(Contato contato)
         {
-            _contatoRepository.Adicionar(contato);
+            if (ModelState.IsValid)
+            {
+                _contatoRepository.Adicionar(contato);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");            
+            return View(contato);
+            
         }
 
 // **********************EDITAR******************************************* //
