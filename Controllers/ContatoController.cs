@@ -1,5 +1,6 @@
 ﻿using Altsystems.ControleDeContatos.Models;
 using Altsystems.ControleDeContatos.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -17,17 +18,18 @@ namespace Altsystems.ControleDeContatos.Controllers
 
         public IActionResult Index()
         {
-            List<Contato> contatos =  _contatoRepository.BuscarTodos();
+            List<Contato> contatos = _contatoRepository.BuscarTodos();
 
             return View(contatos);
         }
- // **********************INCLUIR***************************************** //
-        
+        // **********************INCLUIR***************************************** //
+
+        [Authorize]
         public IActionResult Incluir()
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Incluir(Contato contato)
         {
@@ -48,11 +50,12 @@ namespace Altsystems.ControleDeContatos.Controllers
                 TempData["MensagemErro"] = $"Ops, não foi possível cadastrar seu contato, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-            
+
         }
 
-// **********************EDITAR******************************************* //
-        
+        // **********************EDITAR******************************************* //
+
+        [Authorize]
         public IActionResult Editar(int id)
         {
             Contato contato = _contatoRepository.ListarPorId(id);
@@ -82,8 +85,9 @@ namespace Altsystems.ControleDeContatos.Controllers
             }
         }
 
- // ********************EXCLUIR******************************************** //
+        // ********************EXCLUIR******************************************** //
 
+        [Authorize]
         public IActionResult ExcluirConfirmacao(int id)
         {
             Contato contato = _contatoRepository.ListarPorId(id);
