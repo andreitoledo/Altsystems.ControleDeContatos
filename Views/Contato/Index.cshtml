@@ -8,8 +8,18 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Incluir">Adicionar novo contato</a>
     </div>
+    <br />
 
-    <br />    
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        Contato adicionado com sucesso!
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        Houve um erro no cadastro!
+    </div>
+
     <h1 class="display-4">Listagem de Contatos</h1>
 
     <table class="table">
