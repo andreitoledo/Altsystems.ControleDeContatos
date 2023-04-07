@@ -1,3 +1,5 @@
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=andreitoledo&show_icons=true&theme=dark)
+
 ### Projeto Controle de Contatos - CRUD
 ### AspNet Core 5 com C# e acesso ao banco SqlServer
 
